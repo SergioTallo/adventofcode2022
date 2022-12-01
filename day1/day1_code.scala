@@ -23,6 +23,8 @@ def find_max_calories(filename:String):Int= {
   return max_calories
 }
 
+
+// For the second star we need to know the three elves carrying the most calories
 def find_three_max_calories(filename:String):Int= {
   var calories_list = ArrayBuffer[Int]()
   var temp_calories: Int = 0
@@ -58,5 +60,7 @@ def find_three_max_calories(filename:String):Int= {
   return calories_list.sum
 }
 
+// First star
 println(find_max_calories("input.txt"))
+// Second star
 println(find_three_max_calories("input.txt"))

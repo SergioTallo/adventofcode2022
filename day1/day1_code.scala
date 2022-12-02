@@ -6,7 +6,7 @@ import scala.collection.mutable.ArrayBuffer
 def find_max_calories(filename:String):Int= {
   var max_calories: Int = 0
   var temp_calories: Int = 0
-  
+
   // Iterate through the lines of the .txt file
   for (line <- Source.fromFile(filename).getLines){
     // The calories an elf is carrying are "grouped" between blank lines, therefore a blank line means
@@ -21,7 +21,7 @@ def find_max_calories(filename:String):Int= {
       // new elf
       temp_calories = 0
     }
-    
+
     // check the calories of the last elf
     if (temp_calories > max_calories) max_calories = temp_calories
 
@@ -58,12 +58,12 @@ def find_three_max_calories(filename:String):Int= {
           min_three_value = calories_list.min
         }
       }
-      
+
       // new elf
       temp_calories = 0
     }
   }
-  
+
   // Check for the calories of the last elf
   if (temp_calories > min_three_value){
     calories_list -= min_three_value.toInt

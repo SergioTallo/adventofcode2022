@@ -93,7 +93,7 @@ def pixels(filename:String):Int= {
     }
   }
 
-  println("")
+  println(" ")
   signal_strength
 
 }

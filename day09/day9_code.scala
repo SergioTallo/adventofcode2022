@@ -47,6 +47,6 @@ def rope_moving(filename:String, bodysize:Int):Int= {
 }
 
 // First star bodysize of 2
-println(rope_moving("input.txt", 2))
+println(rope_moving("day09/input.txt", 2))
 // Second star bodysize of 10
-println(rope_moving("input.txt", 10))
+println(rope_moving("day09/input.txt", 10))

@@ -2,6 +2,11 @@ import scala.io.Source
 import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable.Map
 
+val letter_values = Map[String,Int]("a"->1, "b"->2, "c"->3, "d"->4, "e"->5,
+  "f"->6, "g"->7, "h"->8, "i"->9, "j"->10, "k"->11, "l"->12, "m"->13, "n"->14,
+  "o"->15, "p"->16, "q"->17, "r"->18, "s"->19, "t"->20, "u"->21, "v"->22,
+  "w"->23, "x"->24, "y"->25, "z"->26)
+
 class Monkey() {
   var number: Int = 0
   var items: ArrayBuffer[Long] = ArrayBuffer[Long]()
@@ -61,11 +66,13 @@ def pixels(filename:String, rounds:Int, divisor:Int):Long= {
     supermodulo = supermodulo * monkeys(i).test
   }
 
+  var temp_item: Long = 0
+
   for (_ <- Range(0, rounds)){
     for (monkey_number <- Range(0, monkeys.size)){
       for (item <- monkeys(monkey_number).items){
         monkeys(monkey_number).inspections += 1
-        var temp_item: Long = item % supermodulo
+        temp_item = item
         if (monkeys(monkey_number).operation contains "+"){
           var operator = monkeys(monkey_number).operation.split("\\+")(1).trim.toInt
           temp_item += operator
@@ -82,6 +89,9 @@ def pixels(filename:String, rounds:Int, divisor:Int):Long= {
           if (divisor != 1) {
             temp_item = (temp_item / divisor).floor.toLong
           }
+
+          temp_item = temp_item % supermodulo
+
         }
 
         if (temp_item % monkeys(monkey_number).test == 0){
@@ -97,7 +107,7 @@ def pixels(filename:String, rounds:Int, divisor:Int):Long= {
   var max_value:Long = 0
   var second_max_value:Long = 0
 
-  for (i <- Range(0, monkeys.size)) {
+  for (i <- Range (0, monkeys.size)) {
     if (monkeys(i).inspections > max_value) {
       second_max_value = max_value
       max_value = monkeys(i).inspections

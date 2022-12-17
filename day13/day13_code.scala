@@ -1,3 +1,9 @@
+// This code is not working, i couldn't find any
+// solution in scala, therefore, i solved this
+// day using python. I didn't store that code
+// because this repository should be in scala.
+
+
 import scala.io.Source
 import scala.collection.mutable.ListBuffer
 import scala.collection.mutable.Map

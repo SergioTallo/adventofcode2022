@@ -1,17 +1,14 @@
 import scala.io.Source
-import scala.collection.mutable.ArrayBuffer
 import scala.collection.mutable
 
 class Number(number_value:Long){
   var value: Long = number_value
 }
 
-
 def parse_file(filename:String, key: Int):mutable.ListBuffer[Number] = {
   val numbers: mutable.ListBuffer[Number] = mutable.ListBuffer[Number]()
-  val data = Source.fromResource(filename).getLines().filter(_.nonEmpty).toSeq
 
-  for (num <- data){
+  for (num <- Source.fromResource(filename).getLines().filter(_.nonEmpty).toSeq){
     val number = new Number(num.toLong * key)
     numbers += number
   }
@@ -24,15 +21,15 @@ def decrypt(filename: String, key: Int, number_of_mix: Int): Long  = {
   val numbers = parse_file(filename, key)
   val final_list = numbers.clone()
 
-  for (i <- Range(0, number_of_mix)){
-    for (num <- numbers.zipWithIndex) {
-      val old_position = final_list.indexOf(num._1)
-      var new_position = ((old_position + num._1.value) % (numbers.length - 1)).toInt
+  for (_ <- Range(0, number_of_mix)){
+    for (number <- numbers) {
+      val old_position = final_list.indexOf(number)
+      var new_position = ((old_position + number.value) % (numbers.length - 1)).toInt
       if (new_position <= 0) {
         new_position = numbers.length - 1 + new_position
       }
-      final_list -= num._1
-      final_list.insert(new_position, num._1)
+      final_list -= number
+      final_list.insert(new_position, number)
     }
   }
 
